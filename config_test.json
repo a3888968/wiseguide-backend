@@ -1,0 +1,6 @@
+{
+	"tablePrefix": "TrailappTest",
+	"timechunkIntervalInMins": 30,
+	"unitTesting": true,
+	"hostUrl": "http://localhost:3000"
+}

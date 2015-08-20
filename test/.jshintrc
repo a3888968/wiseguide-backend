@@ -1,0 +1,10 @@
+{
+  "globalstrict": true,
+  "globals": {
+    "should": false,
+    "expect": false,
+    "request": false
+  },
+  "mocha": true,
+  "node": true
+}

@@ -1,0 +1,5 @@
+node_modules/
+.elasticbeanstalk/
+npm-debug.log
+trailapp-frontend/
+uploads
