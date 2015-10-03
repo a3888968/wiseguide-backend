@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var main = new Sequelize(
+var sequelize = new Sequelize(
   process.env.DATABASE_NAME_ROOT + "_" + process.env.NODE_ENV,
   process.env.DATABASE_USERNAME,
   process.env.DATABASE_PASSWORD,

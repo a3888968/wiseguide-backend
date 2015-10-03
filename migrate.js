@@ -1,7 +1,7 @@
 var Umzug = require('umzug');
 var umzug = new Umzug({
   storageOptions: {
-    sequelize: require('db'),
+    sequelize: require('./db'),
   },
 });
 
