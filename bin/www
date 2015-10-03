@@ -4,7 +4,7 @@
   * Load envfile
   */
 
-require('node-env-file')({raise: false});
+require('node-env-file')('.env', {raise: false});
 
 /**
  * Module dependencies.
