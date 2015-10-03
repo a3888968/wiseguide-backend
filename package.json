@@ -3,15 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "prestart": "npm run-script load-env",
     "start": "node ./bin/www",
-
-    "load-env": "node -e \"require('node-env-file')('.env',{raise:false})\"",
-
-    "premigrate": "npm run-script load-env",
-    "migrate": "node migrate",
-
-    "style-check": "./node_modules/jscs/bin/jscs ."
+    "style-check": "./node_modules/jscs/bin/jscs .",
+    "migrate": "./node_modules/.bin/sequelize db:migrate"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -23,6 +17,7 @@
     "pg": "^4.4.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^3.10.0",
+    "sequelize-cli": "^1.9.1",
     "umzug": "^1.6.0"
   },
   "devDependencies": {
