@@ -15,6 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       login: require('./user/classMethods/login'),
     },
     instanceMethods: {
+      checkPassword: require('./user/instanceMethods/checkPassword'),
       generateToken: require('./user/instanceMethods/generateToken'),
     }
   });

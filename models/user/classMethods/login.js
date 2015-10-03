@@ -5,8 +5,8 @@ var validator = require('validator');
   Given valid user credentials, generates a JSON web token
   which can be used to authenticate later requests.
   Supply:
-  1. the given username or email address
-  2. the given password
+  1. the given username or email address (String)
+  2. the given plaintext password (String)
   Returns a promise that resolves with an object of the form
   {
     user: User,
@@ -33,12 +33,16 @@ module.exports = function(usernameOrEmail, givenPassword) {
       });
     })
     .then(function(user) {
-      return user.generateToken(givenPassword);
-    })
-    .then(function(result) {
-      return new Promise(function(resolve) {
-        result.user = user;
-        resolve(result);
+      return new Promise(function(resolve, reject) {
+        user.checkPassword(givenPassword).then(function(correct) {
+          if (correct) {
+            var result = user.generateToken();
+            result.user = user;
+            resolve(result);
+          } else {
+            reject(new Error('bad-login'));
+          }
+        });
       });
     });
 };
