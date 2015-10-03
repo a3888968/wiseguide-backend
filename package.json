@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "style-check": "./node_modules/jscs/bin/jscs .",
-    "migrate": "./node_modules/.bin/sequelize db:migrate"
+    "migrate": "node -e \"require('node-env-file')('.env',{raise:false});require('child_process').execSync('./node_modules/.bin/sequelize db:migrate',{stdio:[process.stdin,process.stdout,process.stderr],env:process.env})\""
   },
   "dependencies": {
     "body-parser": "~1.13.2",

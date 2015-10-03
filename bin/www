@@ -1,13 +1,19 @@
 #!/usr/bin/env node
 
 /**
+  * Load envfile
+  */
+
+require('node-env-file')({raise: false});
+
+/**
  * Module dependencies.
  */
 
 var app = require('../app');
 var debug = require('debug')('wiseguide-backend:server');
 var http = require('http');
-var models = require("../models");
+var models = require('../models');
 
 /**
  * Get port from environment and store in Express.
@@ -26,7 +32,7 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-models.sequelize.sync().then(function () {
+models.sequelize.sync().then(function() {
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
@@ -61,8 +67,8 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port
     : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
@@ -86,8 +92,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
