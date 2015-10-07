@@ -1,5 +1,7 @@
 require('../../../support/common');
 
+var userTestSupport = require('../support/common');
+
 var User = global.db.User;
 
 describe('User.login', function() {
@@ -7,13 +9,7 @@ describe('User.login', function() {
   var exampleUser;
 
   beforeEach(function() {
-    exampleUser = User.build({
-      email: 'admin@email.xyz',
-      username: 'admin_user',
-      // Hash of 'password'
-      password: '$2a$10$JUZzrw303qE3uNsi.GBjJeamymZzk5DZjPKpLI4tG1GfIPaLcZ6b2',
-      role: 'admin'
-    });
+    exampleUser = userTestSupport.buildExampleAdminUser();
     return exampleUser.save();
   });
 
