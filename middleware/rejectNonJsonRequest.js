@@ -1,6 +1,8 @@
 module.exports = function(req, res, next) {
-  if (req.isJson) {
-    res.sendError(400, 'JSON Content Type required');
+  if (!req.isJson) {
+    res.status(400).json({
+      error: 'Content-Type should be application/json'
+    }).send();
   } else {
     next();
   }
