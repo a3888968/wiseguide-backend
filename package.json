@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "style-check": "./node_modules/jscs/bin/jscs .",
+    "lint": "./node_modules/jshint/bin/jshint .",
     "migrate": "node -e \"require('./loadEnv');require('child_process').execSync('./node_modules/.bin/sequelize db:migrate',{stdio:[process.stdin,process.stdout,process.stderr],env:process.env})\""
   },
   "dependencies": {
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "jscs": "^2.2.1",
+    "jshint": "^2.8.0",
     "mocha": "^2.3.3"
   }
 }
