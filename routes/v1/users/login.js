@@ -1,10 +1,18 @@
 var express = require('express');
+var validator = require('validator');
 var rejectNonJsonRequest = require('../../../middleware/rejectNonJsonRequest');
 
 module.exports = function(app) {
   var router = express.Router();
 
   router.post('/login', rejectNonJsonRequest, function(req, res, next) {
+    if (typeof req.body.username !== 'string' ||
+        typeof req.body.password !== 'string') {
+      var validationError = new Error('Bad request');
+      validationError.status = 401;
+      validationError.expected = true;
+      return next(validationError);
+    }
     app.get('models').User.login(req.body.username, req.body.password)
       .then(function(result) {
         return res.status(200).json({
@@ -16,9 +24,9 @@ module.exports = function(app) {
           var loginError = new Error('Invalid username or password');
           loginError.status = 401;
           loginError.expected = true;
-          next(loginError);
+          return next(loginError);
         } else {
-          next(err);
+          return next(err);
         }
       });
   });
