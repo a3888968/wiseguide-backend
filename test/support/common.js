@@ -16,11 +16,11 @@ global.expect = chai.expect;
 /* database models */
 global.db = require('../../models/index');
 
-/* Wipe out database before every test case */
 beforeEach(function() {
+  /* wipe database */
   return global.db.sequelize.sync({force: true});
 });
 
-describe('Initial test set-up suite', function() {
+describe('* Initial test set-up suite', function() {
   it('forces inclusion of test set-up code', function() {});
 });
