@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "./node_modules/mocha/bin/mocha --recursive",
     "style-check": "./node_modules/jscs/bin/jscs .",
     "lint": "./node_modules/jshint/bin/jshint .",
     "migrate": "node -e \"require('./loadEnv');require('child_process').execSync('./node_modules/.bin/sequelize db:migrate',{stdio:[process.stdin,process.stdout,process.stderr],env:process.env})\""
@@ -27,6 +28,8 @@
     "validator": "^4.0.6"
   },
   "devDependencies": {
+    "chai": "^3.3.0",
+    "chai-as-promised": "^5.1.0",
     "jscs": "^2.2.1",
     "jshint": "^2.8.0",
     "mocha": "^2.3.3"
