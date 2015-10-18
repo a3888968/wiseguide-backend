@@ -17,9 +17,9 @@ var validator = require('validator');
 module.exports = function(usernameOrEmail, givenPassword) {
   var user;
   var query = validator.isEmail(usernameOrEmail) ? {
-    email: usernameOrEmail
+    email: usernameOrEmail.toLowerCase()
   } : {
-    username: usernameOrEmail
+    username: usernameOrEmail.toLowerCase()
   };
 
   return this.findOne({where: query})

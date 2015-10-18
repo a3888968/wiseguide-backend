@@ -13,6 +13,9 @@ chai.use(chaiAsPromised);
 global.chaiAsPromised = chaiAsPromised;
 global.expect = chai.expect;
 
+/* for making requests */
+global.request = require('supertest')(require('../../app'));
+
 /* database models */
 global.db = require('../../models/index');
 

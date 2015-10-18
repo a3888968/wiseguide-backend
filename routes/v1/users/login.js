@@ -9,7 +9,7 @@ module.exports = function(app) {
     if (typeof req.body.username !== 'string' ||
         typeof req.body.password !== 'string') {
       var validationError = new Error('Bad request');
-      validationError.status = 401;
+      validationError.status = 400;
       validationError.expected = true;
       return next(validationError);
     }
