@@ -15,7 +15,6 @@ var validator = require('validator');
   }
 */
 module.exports = function(usernameOrEmail, givenPassword) {
-  var user;
   var query = validator.isEmail(usernameOrEmail) ? {
     email: usernameOrEmail.toLowerCase()
   } : {
