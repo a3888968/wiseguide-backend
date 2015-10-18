@@ -9,6 +9,8 @@ var app = express();
 
 // attach data models to app (to prevent multiple db connections)
 app.set('models', require('./models/index'));
+// attach cache module to app (to prevent multiple memcache connections)
+app.set('cache', require('./lib/cache'));
 
 // middleware
 if (process.env.NODE_ENV !== 'test') {
