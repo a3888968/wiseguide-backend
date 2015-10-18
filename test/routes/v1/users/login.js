@@ -1,4 +1,5 @@
 var support = require('./support');
+var moment = require('moment');
 
 describe('POST /v1/users/login', function() {
 
@@ -48,9 +49,30 @@ describe('POST /v1/users/login', function() {
 
     function validAccountCases(usernameOrEmail) {
 
-      it('returns 200 if the password is correct', function(done) {
-        login({username: usernameOrEmail, password: 'password'})
-          .expect(200, done);
+      describe('with correct password', function() {
+
+        beforeEach(function() {
+          this.login = login({username: usernameOrEmail, password: 'password'});
+        });
+
+        it('returns 200', function(done) {
+          this.login.expect(200, done);
+        });
+
+        it('returns a string in the token field of the body', function(done) {
+          this.login.expect(function(res) {
+            if (typeof res.body.token !== 'string') { throw new Error('token wasnt a string'); }
+          }).end(done);
+        });
+
+        it('returns a valid future date in the expiry field of the body', function(done) {
+          this.login.expect(function(res) {
+            var date = moment(res.body.expiry);
+            if (!date.isValid()) { throw new Error('date wasnt valid'); }
+            if (!date.isAfter(moment())) { throw new Error('date not in future'); }
+          }).end(done);
+        });
+
       });
 
       it('returns 401 if the password is incorrect', function(done) {
