@@ -4,7 +4,7 @@ class Event
   property :name, index: :exact
   property :description
 
-  validates :title, presence: true
+  validates :name, presence: true
   validates :description, presence: true
 
   has_many :out, :tags, model_class: :Tag, type: :HAS_TAG
