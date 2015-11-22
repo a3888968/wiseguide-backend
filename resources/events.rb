@@ -1,8 +1,11 @@
 module Resources
-  # API endpoints pertaining to updating and fetching event information
   class Events < Sinatra::Base
     get '/events' do
-      @events = Event.all
+      if params.key? 'tag'
+        @events = Tag.where(name: params['tag']).events_with_tag
+      else
+        @events = Event.all
+      end
 
       jbuilder :events
     end

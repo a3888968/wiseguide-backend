@@ -1,4 +1,3 @@
-# Model for events
 class Event
   include Neo4j::ActiveNode
 
@@ -7,4 +6,6 @@ class Event
 
   validates :title, presence: true
   validates :description, presence: true
+
+  has_many :out, :tags, model_class: :Tag, type: :HAS_TAG
 end
